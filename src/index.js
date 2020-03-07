@@ -15,7 +15,7 @@ client.on("message", async (message) => {
 
     const now = Date.now();
 
-    if (author.cooldown) {
+    if (config.cooldown) {
 
         if (!cooldowns.has(message.author.id)) cooldowns.set(message.author.id, now);
 
