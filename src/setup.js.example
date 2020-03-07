@@ -1,0 +1,5 @@
+module.exports = [
+    // ["author-id", { roles: Snowflake[] , message: string, channel?: Snowflake, cooldown?: number }]
+    ["1234567890", { roles: ["685641997360693388"], channel: "123456", message: "New announcement, {{role}}" }],
+    ["0987654321", { roles: ["12345", "67890"], message: "{{role}}", cooldown: 300 }]
+]
