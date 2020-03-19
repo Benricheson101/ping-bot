@@ -1,5 +1,6 @@
 module.exports = [
-    // ["author-id", { roles: Snowflake[] , message: string, channel?: Snowflake, cooldown?: number }]
+    // ["author-id", { roles: Snowflake[] , message: string, channel?: Snowflake, cooldown?: number, delay?: number }]
     ["1234567890", { roles: ["685641997360693388"], channel: "123456", message: "New announcement, {{role}}" }],
-    ["0987654321", { roles: ["12345", "67890"], message: "{{role}}", cooldown: 300 }]
+    ["0987654321", { roles: ["12345", "67890"], message: "This message will be sent no less than 300ms apart {{role}}", cooldown: 300 }],
+    ["1231231231", { roles: ["1234567890"], message: "This message will be delayed by 2000ms, {{role}}", delay: 2000 }]
 ]

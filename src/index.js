@@ -1,8 +1,12 @@
 const { Client, Collection } = require("discord.js");
+const { promisify } = require("util");
 const triggers = require("./setup");
 const client = new Client();
+
 const setup = new Collection(triggers);
 const cooldowns = new Collection();
+
+const wait = promisify(setTimeout);
 
 client.on("ready", () => console.log(`Online as ${client.user.tag}`))
 
@@ -29,14 +33,15 @@ client.on("message", async (message) => {
 
     let roles = config.roles.map((r) => message.guild.roles.cache.get(r));
 
-    for (let role of roles) await role.setMentionable(true, "Pinging...")
+    for (let role of roles) await role.setMentionable(true, "Pinging...");
 
+    if (config.delay) await wait(config.delay);
 
     await message.channel.send(str)
 
     for (let role of roles) await role.setMentionable(false, "Setting role back to unpingable...");
 
-    if (author.cooldown) {
+    if (config.cooldown) {
         cooldowns.set(message.author.id, now + (config.cooldown * 1000));
         setTimeout(() => {
             cooldowns.delete(message.author.id);
